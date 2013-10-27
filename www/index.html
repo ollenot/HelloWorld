@@ -34,8 +34,9 @@
                        onclick="tiraFoto()" />
                 <input type="button" value="Onde estou?" onclick="geo()" />
             </div>
-            <img id="myImage" width="20" alt="imagem" height="20" 
+            <img id="myImage" width="100" alt="imagem" height="100" 
                  src="img/Chrysanthemum.jpg" />
+            <p id="geolocation">Watching geolocation...</p>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript">
@@ -62,8 +63,24 @@
             }
             
             function geo(){
-                
+                // Throw an error if no update is received every 30 seconds
+                var options = { timeout: 30000 };
+                watchID = navigator.geolocation.watchPosition(onSuccessGPS, onError, options);                
             }
+            
+            function onSuccessGPS(position) {
+             var element = document.getElementById('geolocation');
+             element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
+                                 'Longitude: ' + position.coords.longitude     + '<br />' +
+                                 '<hr />'      + element.innerHTML;
+            }
+
+             // onError Callback receives a PositionError object
+             //
+             function onError(error) {
+                 alert('code: '    + error.code    + '\n' +
+                       'message: ' + error.message + '\n');
+             }
         </script>
     </body>
 </html>
