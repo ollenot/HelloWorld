@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="com.coolappz.HelloWorld" version="1.0.0">
-    <name>HelloWorld</name>
-    <description>Aplicação Cordova</description>
-    <author email="info@com.coolappz" href="http://www.coolappz.com">Alice</author>
+    <name>Conversor</name>
+    <description>Conversor</description>
+    <author email="info@com.coolappz" href="http://www.coolappz.com">Giovanni</author>
     <access origin="*"/>
     <preference name="fullscreen" value="true"/>
     <preference name="webviewbounce" value="true"/>
