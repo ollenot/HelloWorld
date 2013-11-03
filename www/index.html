@@ -51,32 +51,23 @@
                     Seleciona a moeda que deseja trocar
             </div>
             <div id="divMoedas1"></div>
-        </div>
-        <div data-role="page" id="page2">
             <div data-role="content">
                     Seleciona a moeda para que você vai trocar
             </div>
             <div id="divMoedas2"></div>
-        </div>        
-        <div data-role="page" id="page3">
-            <div data-role="content">
-                <div data-role="fieldcontain">
-                    <label for="textinput1">
-                        Valor que você irá trocar:
-                    </label>
-                    <input name="" id="txtValor" placeholder="" value="0" type="text">
-                </div>      
-                <div data-role="button" onclick="converter()">
-                    Consultar
-                </div>    
-                <div id="Resultado">
-                    
-                </div>                 
-            </div>
-
-            <input type="hidden" id="hidAtual" />
-            <input type="hidden" id="hidFutura" />            
-        </div> 
+            <div data-role="fieldcontain">
+                <label for="textinput1">
+                    Valor que você irá trocar:
+                </label>
+                <input name="" id="txtValor" placeholder="" value="0" type="text">
+            </div>      
+            <div data-role="button" onclick="converter()">
+                Consultar
+            </div>    
+            <div id="Resultado"></div>
+            <input type="hidden" id="hidAtual" value="BRL-Brazilian Real" />
+            <input type="hidden" id="hidFutura" value="BRL-Brazilian Real" />  
+        </div>                  
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript">
             
@@ -99,20 +90,15 @@
             
             function carregaMoedas(id, page, div, ul, atual){
                 var moedas = listarMoedas();
-                var listString = '<ul data-role="listview" id="' + id + '">';  
+                var listString = '<select onchange="seleciona(this.value, ' + atual + ')" id="' + id + '">';  
                 $.each(moedas, function(index, value){  
-                    listString += '<li>' + 
-                            '<a onclick="seleciona(this.innerHTML, ' + atual + ')" ' +
-                            'href="' + page + '" >' +
-                            moedas[index] + '</a></li>';  
+                    listString += '<option value="' + moedas[index] + '">' +
+                            moedas[index] + '</option>';  
                 });  
-                listString +='</ul>';  
+                listString +='</select>';  
 
                 //appending to the div  
                 $(div).html(listString);  
-
-                // refreshing the list to apply styles  
-                $(ul).listview(); 
             }
             
             function converter(){
